@@ -1,5 +1,5 @@
 - name: Windows Updates
-  hosts: {{ windows_hosts }}
+  hosts: "{{ windows_hosts }}"
 
   tasks:
   - name: Search-only, return list of found updates
