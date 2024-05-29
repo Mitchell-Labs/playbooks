@@ -1,0 +1,14 @@
+- name: Windows Updates
+  hosts: windows
+
+  tasks:
+  - name: Search-only, return list of found updates
+    ansible.windows.win_updates:
+      category_names: *
+      state: searched
+
+  - name: Ensure we wait long enough for the updates to be applied during reboot
+    ansible.windows.win_updates:
+      category_names: *
+      reboot: true
+      reboot_timeout: 3600
