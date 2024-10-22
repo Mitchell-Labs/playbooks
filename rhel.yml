@@ -1,0 +1,16 @@
+- name: RHEL updates
+  become: true
+  become_user: root
+  hosts: rhel
+  tasks:
+  - name: Update all installed packages
+    dnf:
+      name: '*'
+      state: latest
+      update_cache: yes
+      update_only: yes
+    register: update_status
+
+  - name: Remove packates not needed anymore
+    dnf:
+      autoremove: yes
