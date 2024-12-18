@@ -1,7 +1,7 @@
 - name: RHEL updates
   become: true
   become_user: root
-  hosts: "{{ rhel_hosts | default(rhel) }}" 
+  hosts: "{{ rhel_hosts | default('rhel') }}" 
   tasks:
   - name: Update all installed packages
     dnf:
