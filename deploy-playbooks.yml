@@ -98,7 +98,6 @@
       with_items: "{{ rhel_without_survey.files }}"
 
 # Special boys
-
     - name: Create Refresh RHAH token template
       ansible.controller.job_template:
         name: 'AAP // Refresh RHAH token'
