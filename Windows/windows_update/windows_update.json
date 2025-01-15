@@ -1,0 +1,8 @@
+{
+    "type": "text",
+    "question_name": "Which hosts?",
+    "question_description": "Which hosts to patch?",
+    "variable": "windows_hosts",
+    "required": true,
+    "default": "windows"
+}
