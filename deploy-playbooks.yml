@@ -12,7 +12,7 @@
 
     - name: Print return information from the previous task
       ansible.builtin.debug:
-        msg: "{{ item.path }}"
+        msg: "{{ (item.path | split('/'))[2] }}"
       with_items: "{{ windows_with_survey.files }}"
 
 #    - name: Create Windows templates with surveys
