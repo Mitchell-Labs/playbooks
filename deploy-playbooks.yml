@@ -3,10 +3,11 @@
   hosts: localhost
   connection: local
   tasks:
-    - name: List sub directories
+    - name: Register windows with surveys
       ansible.builtin.find:
-        paths: ./Windows
+        paths: ./windows/with_survey
         file_type: directory
+      register: windows_with_survey
 
     # - name: Create Windows patching
     #  ansible.controller.job_template:
