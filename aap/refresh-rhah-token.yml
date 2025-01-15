@@ -1,0 +1,13 @@
+---
+- name: Refresh RH Automation Hub token
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: 'Refresh RH Automation Hub token'
+      ansible.builtin.uri:
+        url: 'https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token'
+        method: POST
+        body: "grant_type=refresh_token&client_id=cloud-services&refresh_token={{ user_token }}"
+        headers:
+          Content-Type: application/x-www-form-urlencoded
