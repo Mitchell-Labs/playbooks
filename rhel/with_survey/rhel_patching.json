@@ -1,0 +1,14 @@
+{
+    "name": "",
+    "description": "",
+    "spec": [
+        {
+            "type": "text",
+            "question_name": "Which hosts?",
+            "question_description": "Which hosts to patch?",
+            "variable": "rhel_hosts",
+            "required": true,
+            "default": "rhel"
+        }
+    ]
+}
