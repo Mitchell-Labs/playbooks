@@ -21,7 +21,7 @@
         job_type: "run"
         organization: "Default"
         inventory: "Lab Inventory"
-        project: "playbook"
+        project: "playbooks"
         playbook: "{{ item.path }}/{{ (item.path | split('/'))[2] }}.yml"
         state: "present"
         survey_enabled: true
