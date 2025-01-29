@@ -30,7 +30,7 @@
         project: "playbooks"
         playbook: "{{ item.path }}/{{ (item.path | split('/'))[2] }}.yml"
         state: "present"
-        credential: "Windows AD Admin"
+        credential: "Windows AD admin"
         survey_enabled: true
         survey_spec: "{{ lookup('file', (item.path + '/' + (item.path | split('/'))[2] + '.json')) }}"
       with_items: "{{ windows_with_survey.files }}"
@@ -52,7 +52,7 @@
         project: "playbooks"
         playbook: "{{ item.path }}/{{ (item.path | split('/'))[2] }}.yml"
         state: "present"
-        credential: "Windows AD Admin"
+        credential: "Windows AD admin"
       with_items: "{{ windows_without_survey.files }}"
 
     - name: Register RHEL with surveys
