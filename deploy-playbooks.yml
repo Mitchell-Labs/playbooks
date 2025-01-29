@@ -21,7 +21,7 @@
 
     - name: Create Windows templates with surveys
       ansible.controller.job_template:
-        name: "Windows // {{ (item.path | split('/'))[2] }}"
+        name: "Windows // {{(item.path | split('/'))[2] | replace('_',' ')}}"
         labels:
           - "Windows"
         job_type: "run"
