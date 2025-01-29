@@ -104,7 +104,7 @@
         job_type: "run"
         organization: "Default"
         inventory: "Lab Inventory"
-        project: "aap-config"
+        project: "playbooks"
         playbook: "aap/refresh-rhah-token.yml"
         state: "present"
         labels:
