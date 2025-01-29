@@ -72,7 +72,7 @@
         project: "playbooks"
         playbook: "{{ item.path }}/{{ (item.path | split('/'))[2] }}.yml"
         state: "present"
-        credential: "RHEL Admin"
+        credential: "RHEL admin"
         survey_enabled: true
         survey_spec: "{{ lookup('file', (item.path + '/' + (item.path | split('/'))[2] + '.json')) }}"
       with_items: "{{ rhel_with_survey.files }}"
@@ -94,7 +94,7 @@
         project: "playbooks"
         playbook: "{{ item.path }}/{{ (item.path | split('/'))[2] }}.yml"
         state: "present"
-        credential: "RHEL Admin"
+        credential: "RHEL admin"
       with_items: "{{ rhel_without_survey.files }}"
 
 # Special boys
