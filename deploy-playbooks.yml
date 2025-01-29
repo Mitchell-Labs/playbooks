@@ -43,7 +43,7 @@
 
     - name: Create Windows templates without surveys
       ansible.controller.job_template:
-        name: "Windows // {{ (item.path | split('/'))[2] }}"
+        name: "Windows // {{(item.path | split('/'))[2] | replace('_',' ')}}"
         labels:
           - "Windows"
         job_type: "run"
@@ -63,7 +63,7 @@
 
     - name: Create RHEL templates with surveys
       ansible.controller.job_template:
-        name: "RHEL // {{ (item.path | split('/'))[2] }}"
+        name: "RHEL // {{(item.path | split('/'))[2] | replace('_',' ')}}"
         labels:
           - "RHEL"
         job_type: "run"
@@ -85,7 +85,7 @@
 
     - name: Create RHEL templates without surveys
       ansible.controller.job_template:
-        name: "RHEL // {{ (item.path | split('/'))[2] }}"
+        name: "RHEL // {{(item.path | split('/'))[2] | replace('_',' ')}}"
         labels:
           - "RHEL"
         job_type: "run"
