@@ -87,7 +87,6 @@
                   - name: cloudinitdisk
                     cloudInitNoCloud:
                       userData: |-
-                        userData: |
                         #cloud-config
                         user: mkletz
                         password: P@$$w0rd
