@@ -22,13 +22,13 @@
             "min": 0,
             "type": "multiplechoice",
             "choices": [
-                "win2k25-02062025"
+                "win2k25-custom"
             ],
             "question_name": "OS Version",
             "question_description": "OS Version",
             "variable": "os_version",
             "required": true,
-            "default": "win2k25-02062025"
+            "default": "win2k25-custom"
         }
     ]
 }
