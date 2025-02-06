@@ -1,0 +1,34 @@
+{
+    "name": "",
+    "description": "",
+    "spec": [
+        {
+            "type": "text",
+            "question_name": "VM Name",
+            "question_description": "VM Name",
+            "variable": "vm_name",
+            "required": true
+        },
+        {
+            "type": "text",
+            "question_name": "OCP Namespace",
+            "question_description": "OCP Namespace",
+            "variable": "vm_namespace",
+            "required": true,
+            "default": "infra-vms"
+        },
+        {
+            "max": 1024,
+            "min": 0,
+            "type": "multiplechoice",
+            "choices": [
+                "win2k25-02062025"
+            ],
+            "question_name": "OS Version",
+            "question_description": "OS Version",
+            "variable": "os_version",
+            "required": true,
+            "default": "win2k25-02062025"
+        }
+    ]
+}
