@@ -14,7 +14,7 @@
             namespace: "{{ vm_namespace }}"
             labels:
               app: "{{ vm_name }}"
-              os.template.kubevirt.io/windows2k25-server-custom: 'true'
+              os.template.kubevirt.io/windows2k25-server-medium: 'true'
               vm.kubevirt.io/name: "{{ vm_name }}"
           spec:
             dataVolumeTemplates:
