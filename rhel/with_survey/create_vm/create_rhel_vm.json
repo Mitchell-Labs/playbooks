@@ -1,0 +1,51 @@
+{
+    "name": "",
+    "description": "",
+    "spec": [
+        {
+            "type": "text",
+            "question_name": "VM Name",
+            "question_description": "VM Name",
+            "variable": "vm_name",
+            "required": true
+        },
+        {
+            "type": "text",
+            "question_name": "OCP Namespace",
+            "question_description": "OCP Namespace",
+            "variable": "vm_namespace",
+            "required": true,
+            "default": "infra-vms"
+        },
+        {
+            "max": 1024,
+            "min": 0,
+            "type": "multiplechoice",
+            "choices": [
+                "rhel8",
+                "rhel9"
+            ],
+            "question_name": "OS Version",
+            "question_description": "OS Version",
+            "variable": "os_version",
+            "required": true,
+            "default": "rhel9"
+        },
+        {
+            "type": "text",
+            "question_name": "Org ID",
+            "question_description": "Org ID",
+            "variable": "rh_subscription_org",
+            "required": true,
+            "default": "15552118"
+        },
+        {
+            "type": "text",
+            "question_name": "activation-key",
+            "question_description": "activation-key",
+            "variable": "rh_subscription_key",
+            "required": true,
+            "default": "home_lab"
+        }
+    ]
+}
