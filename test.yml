@@ -1,0 +1,6 @@
+- name: Metrics test
+  hosts: localhost
+  tasks:
+    - name: Metrics test
+      ansible.builtin.uri:
+        url: https://aap-aap.apps.mitchell-labs.mikemitchell.info/api/controller/v2/host_metrics/
