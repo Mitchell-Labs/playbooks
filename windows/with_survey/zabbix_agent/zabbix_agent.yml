@@ -1,0 +1,28 @@
+- name: Windows Zabbix Agent
+  hosts: "{{ windows_hosts | default('windows') }}"
+  vars:
+    agent_url: "https://cdn.zabbix.com/zabbix/binaries/stable/7.2/7.2.4/zabbix_agent2-7.2.4-windows-amd64-openssl.msi"
+    product_id: "{EF9B1DBF-C592-4350-8795-EF09D72A7C94}"
+    zabbix_server: "zabbix.mikemitchell.info"
+  tasks:
+    - name: Install Zabbix agent 2
+      ansible.windows.win_package:
+        path: "{{ agent_url }}"
+        product_id: "{{product_id}}"
+        state: present
+        arguments:
+          - HOSTNAME="{{win_fqdn}}"
+          - SERVER="{{zabbix_server}}"
+
+    - name: Create host in Zabbix
+      zabbix.zabbix.zabbix_host:
+        state: present
+        host: "{{win_fqdn}}"
+        hostgroups:
+          - Windows servers
+        templates:
+          - Zabbix agent active
+        interfaces:
+          - type: agent
+            dns: "{{win_fqdn}}"
+      delegate_to: zabbix

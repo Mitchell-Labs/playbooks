@@ -1,0 +1,20 @@
+{
+    "name": "",
+    "description": "",
+    "spec": [
+        {
+            "type": "text",
+            "question_name": "Which hosts?",
+            "question_description": "",
+            "variable": "windows_hosts",
+            "required": true
+        },
+        {
+            "type": "text",
+            "question_name": "Host FQDN",
+            "question_description": "",
+            "variable": "win_fqdn",
+            "required": true
+        }
+    ]
+}
