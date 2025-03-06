@@ -1,0 +1,35 @@
+---
+- hosts: "{{ windows_host }}"
+  vars:
+    iis_root: "C:\Inetpub\wwwroot"
+    site_dest: "{{ iis_root }}\\source.zip"
+
+  tasks:
+  - name: Install IIS
+    win_feature:
+      name: Web-Server
+      state: present
+
+  - name: Start IIS service
+    win_service:
+      name: W3Svc
+      state: started
+
+  - name: Download site source
+    win_get_url:
+      url: "{{ site_source }}"
+      dest: "{{ site_dest }}"
+
+  - name: Extract site content
+    win_unzip:
+      src: "{{ site_dest }}"
+      dest: "{{ iis_root }}"
+      delete_archive: yes
+
+  - name: Get site dir
+    win_shell: "(Get-ChildItem -Path {{ iis_root }}).Name"
+    register: site_sub_dir
+
+  - name: Output URL
+    debug:
+      msg: "http://{{ ansible_host }}/{{ site_sub_dir.stdout_lines[0] }}"
