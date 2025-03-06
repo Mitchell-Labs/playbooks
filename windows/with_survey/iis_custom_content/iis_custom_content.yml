@@ -1,7 +1,7 @@
 ---
 - hosts: "{{ windows_host }}"
   vars:
-    iis_root: "C:\Inetpub\wwwroot"
+    iis_root: "C:\\Inetpub\\wwwroot"
     site_dest: "{{ iis_root }}\\source.zip"
 
   tasks:
