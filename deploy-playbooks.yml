@@ -3,6 +3,8 @@
   hosts: localhost
   connection: local
   gather_facts: false
+  vars:
+    custom_ee: "ee-mitchell-labs-default"
   tasks:
     - name: Create labels
       ansible.controller.label:
@@ -33,6 +35,7 @@
         credential: "Windows AD admin"
         survey_enabled: true
         survey_spec: "{{ lookup('file', (item.path + '/' + (item.path | split('/'))[2] + '.json')) }}"
+        execution_environment: "{{ custom_ee }}"
       with_items: "{{ windows_with_survey.files }}"
 
     - name: Register windows without surveys
@@ -53,6 +56,7 @@
         playbook: "{{ item.path }}/{{ (item.path | split('/'))[2] }}.yml"
         state: "present"
         credential: "Windows AD admin"
+        execution_environment: "{{ custom_ee }}"
       with_items: "{{ windows_without_survey.files }}"
 
     - name: Register RHEL with surveys
@@ -75,6 +79,7 @@
         credential: "RHEL admin"
         survey_enabled: true
         survey_spec: "{{ lookup('file', (item.path + '/' + (item.path | split('/'))[2] + '.json')) }}"
+        execution_environment: "{{ custom_ee }}"
       with_items: "{{ rhel_with_survey.files }}"
 
     - name: Register RHEL without surveys
@@ -95,6 +100,7 @@
         playbook: "{{ item.path }}/{{ (item.path | split('/'))[2] }}.yml"
         state: "present"
         credential: "RHEL admin"
+        execution_environment: "{{ custom_ee }}"
       with_items: "{{ rhel_without_survey.files }}"
 
 # Special boys
