@@ -9,3 +9,7 @@
     - name: Register Disk Object
       ansible.builtin.set_fact:
         disk_to_expand: "{{ hostvars['windemo01.mikemitchell.info']['vmi_volume_status'][disk_to_expand_index] }}"
+
+    - name: Print
+      ansible.builtin.debug:
+        var: disk_to_expand
