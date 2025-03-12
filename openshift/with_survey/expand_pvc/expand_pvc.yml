@@ -15,3 +15,4 @@
         namespace: "{{ vm_namespace }}"
         wait: true
         wait_timeout: 240
+      when: vm_name is defined
