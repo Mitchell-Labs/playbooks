@@ -14,6 +14,15 @@
       ansible.builtin.set_fact:
         disk_to_expand: "{{ vm_disks[disk_to_expand_index | int] }}"
 
-    - name: Print
-      ansible.builtin.debug:
-        var: disk_to_expand
+    - name: Expand the PVC
+      redhat.openshift.k8s:
+        state: present
+        definition:
+          kind: PersistentVolumeClaim
+          apiVersion: v1
+          metadata:
+            name: "{{ disk_to_expand.persistentVolumeClaimInfo.claimName }}"
+          spec:
+            resources:
+              requests:
+                storage: 1Gi 
