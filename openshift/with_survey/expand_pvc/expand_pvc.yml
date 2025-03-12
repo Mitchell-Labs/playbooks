@@ -2,6 +2,6 @@
 - name: Expand PVC
   hosts: localhost
   tasks:
-    - name: Print var
-      ansible.builtin.debug:
-        var: hostvars['windemo01.mikemitchell.info']['vmi_volume_status']
+    - name: Register Disk Object
+      ansible.builtin.set_fact:
+        disk_to_expand: "{{ lookup('ansible.utils.index_of', hostvars['windemo01.mikemitchell.info']['vmi_volume_status'], 'eq', 'volume-d', 'name') }}"
