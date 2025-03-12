@@ -4,4 +4,4 @@
   tasks:
     - name: Print var
       ansible.builtin.debug:
-        var: hostvars['windemo01.mikemitchell.info']['vm_annotations']
+        var: hostvars['windemo01.mikemitchell.info']['vmi_volume_status']
