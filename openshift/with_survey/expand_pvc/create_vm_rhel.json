@@ -1,0 +1,41 @@
+{
+    "name": "",
+    "description": "",
+    "spec": [
+        {
+            "type": "text",
+            "question_name": "Project",
+            "question_description": "Project",
+            "variable": "project_name",
+            "required": true
+        },
+        {
+            "type": "text",
+            "question_name": "PVC Name",
+            "question_description": "PVC Name",
+            "variable": "pvc_name",
+            "required": false
+        },
+        {
+            "type": "text",
+            "question_name": "VM Name",
+            "question_description": "VM Name",
+            "variable": "vm_name",
+            "required": false
+        },
+        {
+            "type": "text",
+            "question_name": "Disk Name",
+            "question_description": "Disk Name",
+            "variable": "vm_disk_name",
+            "required": false
+        },
+        {
+            "type": "integer",
+            "question_name": "Expansion Percentage",
+            "question_description": "Expansion Percentage",
+            "variable": "expansion_percentage",
+            "required": true
+        }
+    ]
+}

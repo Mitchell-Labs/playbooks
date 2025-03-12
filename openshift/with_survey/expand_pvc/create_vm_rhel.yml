@@ -1,0 +1,17 @@
+---
+- name: Expand PVC
+  hosts: localhost
+  tasks:
+    - name: Get VirtualMachine
+      redhat.openshift_virtualization.kubevirt_vm_info:
+        name: "{{ vm_name }}"
+        namespace: "{{ project_name }}"
+      register: vm_info
+      when: vm_name is defined
+
+    - name: Wait for VM to be running
+      redhat.openshift_virtualization.kubevirt_vm_info:
+        name: "{{ vm_name }}"
+        namespace: "{{ vm_namespace }}"
+        wait: true
+        wait_timeout: 240
