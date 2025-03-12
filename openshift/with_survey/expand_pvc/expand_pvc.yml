@@ -3,9 +3,7 @@
   hosts: localhost
   tasks:
     - name: Get VirtualMachine
-      redhat.openshift_virtualization.kubevirt_vm_info:
-        name: "{{ vm_name }}"
-        namespace: "{{ project_name }}"
+      ansible.builtin.command: "oc get vm/{{ vm_name }} -o yaml"
       register: vm_info
       when: vm_name is defined
 
