@@ -4,11 +4,15 @@
   tasks:
     - name: Register Disk Object
       ansible.builtin.set_fact:
-        disk_to_expand_index: "{{ lookup('ansible.utils.index_of', hostvars['windemo01.mikemitchell.info']['vmi_volume_status'], 'eq', 'volume-d', 'name') }}"
+        vm_disks: "{{ hostvars['windemo01.mikemitchell.info']['vmi_volume_status'] }}"
 
     - name: Register Disk Object
       ansible.builtin.set_fact:
-        disk_to_expand: "{{ hostvars['windemo01.mikemitchell.info']['vmi_volume_status'][disk_to_expand_index] }}"
+        disk_to_expand_index: "{{ lookup('ansible.utils.index_of', vm_disks, 'eq', 'volume-d', 'name') }}"
+
+    - name: Register Disk Object
+      ansible.builtin.set_fact:
+        disk_to_expand: "{{ vm_disks[disk_to_expand_index] }}"
 
     - name: Print
       ansible.builtin.debug:
