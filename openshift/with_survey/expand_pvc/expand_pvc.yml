@@ -9,6 +9,10 @@
       register: vm_info
       when: vm_name is defined
 
+    - name: Print var
+      ansible.builtin.debug:
+        var: vm_info
+
     - name: Wait for VM to be running
       redhat.openshift_virtualization.kubevirt_vm_info:
         name: "{{ vm_name }}"
