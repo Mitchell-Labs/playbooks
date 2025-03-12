@@ -2,11 +2,6 @@
 - name: Expand PVC
   hosts: localhost
   tasks:
-    - name: Get VirtualMachine
-      ansible.builtin.command: "oc get vm/{{ vm_name }} -o yaml"
-      register: vm_info
-      when: vm_name is defined
-
     - name: Print var
       ansible.builtin.debug:
-        var: vm_info
+        var: hostvars['windemo01.mikemitchell.info']
