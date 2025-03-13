@@ -4,15 +4,18 @@
   tasks:
     - name: Register all disks
       ansible.builtin.set_fact:
-        vm_disks: "{{ hostvars['windemo01.mikemitchell.info']['vmi_volume_status'] }}"
+        vm_disks: "{{ hostvars[vm_name]['vmi_volume_status'] }}"
+      when: vm_name is defined
 
     - name: Find the one we care about
       ansible.builtin.set_fact:
         disk_to_expand_index: "{{ lookup('ansible.utils.index_of', vm_disks, 'eq', 'volume-d', 'name') }}"
+      when: vm_name is defined
 
     - name: Register that one
       ansible.builtin.set_fact:
-        disk_to_expand: "{{ vm_disks[disk_to_expand_index | int] }}"
+        pvc_name: "{{ vm_disks[disk_to_expand_index | int].persistentVolumeClaimInfo.claimName }}"
+      when: vm_name is defined
 
     - name: Expand the PVC
       redhat.openshift.k8s:
@@ -21,9 +24,9 @@
           kind: PersistentVolumeClaim
           apiVersion: v1
           metadata:
-            name: "{{ disk_to_expand.persistentVolumeClaimInfo.claimName }}"
+            name: "{{ pvc_name }}"
             namespace: "{{ project_name }}"
           spec:
             resources:
               requests:
-                storage: 1Gi 
+                storage: 1Gi

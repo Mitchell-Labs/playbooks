@@ -29,13 +29,6 @@
             "question_description": "Disk Name",
             "variable": "vm_disk_name",
             "required": false
-        },
-        {
-            "type": "integer",
-            "question_name": "Expansion Percentage",
-            "question_description": "Expansion Percentage",
-            "variable": "expansion_percentage",
-            "required": true
         }
     ]
 }
