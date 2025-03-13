@@ -21,7 +21,8 @@
       redhat.openshift.k8s:
         state: present
         wait: true
-        wait_condition: bound
+        wait_condition:
+          status: bound
         definition:
           kind: PersistentVolumeClaim
           apiVersion: v1
