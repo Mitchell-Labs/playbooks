@@ -20,9 +20,6 @@
     - name: Expand the PVC
       redhat.openshift.k8s:
         state: present
-        wait: true
-        wait_condition:
-          status: bound
         definition:
           kind: PersistentVolumeClaim
           apiVersion: v1
