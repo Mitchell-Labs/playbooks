@@ -29,6 +29,14 @@
             "question_description": "Disk Name",
             "variable": "vm_disk_name",
             "required": false
+        },
+        {
+            "type": "text",
+            "question_name": "Expand to",
+            "question_description": "Expand to",
+            "variable": "expansion_size",
+            "required": true,
+            "default": "2Gi"
         }
     ]
 }
