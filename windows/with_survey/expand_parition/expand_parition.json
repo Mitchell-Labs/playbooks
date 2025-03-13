@@ -7,14 +7,14 @@
             "question_name": "Windows Host",
             "question_description": "",
             "variable": "windows_host",
-            "required": true
+            "required": false
         },
         {
             "type": "text",
             "question_name": "Drive Letter",
             "question_description": "",
             "variable": "drive_letter",
-            "required": true
+            "required": false
         }
     ]
 }

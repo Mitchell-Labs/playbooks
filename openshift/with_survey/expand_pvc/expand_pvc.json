@@ -7,7 +7,7 @@
             "question_name": "Project",
             "question_description": "Project",
             "variable": "project_name",
-            "required": true
+            "required": false
         },
         {
             "type": "text",
@@ -35,7 +35,7 @@
             "question_name": "Expand to",
             "question_description": "Expand to",
             "variable": "expansion_size",
-            "required": true,
+            "required": false,
             "default": "2Gi"
         }
     ]
