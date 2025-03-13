@@ -33,3 +33,13 @@
             resources:
               requests:
                 storage: "{{ expansion_size }}"
+
+    - name: Wait for PVC to be bound
+      redhat.openshift.k8s_info:
+        namespace: "{{ project_name }}"
+        kind: PersistentVolumeClaim
+        name: "{{ pvc_name }}"
+      register: pvc_status
+      retries: 10
+      delay: 5
+      until: pvc_status.resources[0].status.phase == "Bound"
