@@ -14,6 +14,9 @@
           (Get-Partition -DriveLetter {{ drive_letter }} | Get-Disk).Number
       register: disk_number
 
-    - name : print
-      ansible.builtin.debug:
-        var: partition_number.output[0]
+    - name: Resize partition
+      community.windows.win_partition:
+        drive_letter: "{{ drive_letter }}"
+        partition_size: -1
+        partition_number: "{{ partition_number.output[0] }}"
+        disk_number: "{{ disk_number.output[0] }}"
