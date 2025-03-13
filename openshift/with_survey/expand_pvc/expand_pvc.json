@@ -35,8 +35,7 @@
             "question_name": "Expand to",
             "question_description": "Expand to",
             "variable": "expansion_size",
-            "required": false,
-            "default": "2Gi"
+            "required": false
         }
     ]
 }
