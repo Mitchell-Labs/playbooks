@@ -5,15 +5,11 @@
     - name: Register partition number
       ansible.windows.win_powershell:
         script: |
-          (Get-Partition -DriveLetter $DriveLetter).PartitionNumber
-        parameters:
-          DriveLetter: "{{ drive_letter }}"
+          (Get-Partition -DriveLetter {{ drive_letter }}).PartitionNumber
       register: partition_number
 
     - name: Register disk number
       ansible.windows.win_powershell:
         script: | 
-          (Get-Partition -DriveLetter $DriveLetter | Get-Disk).Number
-        parameters:
-          DriveLetter: "{{ drive_letter }}"
+          (Get-Partition -DriveLetter {{ drive_letter }} | Get-Disk).Number
       register: disk_number
