@@ -38,5 +38,5 @@
         name: "{{ pvc_name }}"
       register: pvc_status
       retries: 10
-      delay: 5
+      delay: 10
       until: "'conditions' not in pvc_status.resources[0].status"
