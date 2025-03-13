@@ -35,7 +35,7 @@
                 storage: "{{ expansion_size }}"
 
     - name: Wait for PVC to be bound
-      redhat.openshift.k8s_info:
+      kubernetes.core.k8s_info:
         namespace: "{{ project_name }}"
         kind: PersistentVolumeClaim
         name: "{{ pvc_name }}"
