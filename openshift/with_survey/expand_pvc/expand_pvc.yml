@@ -39,4 +39,4 @@
       register: pvc_status
       retries: 10
       delay: 5
-      until: pvc_status.resources[0].status.phase == "Bound"
+      until: "'conditions' not in pvc_status.resources[0].status"
