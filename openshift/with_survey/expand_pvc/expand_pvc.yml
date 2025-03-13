@@ -9,7 +9,7 @@
 
     - name: Find the one we care about
       ansible.builtin.set_fact:
-        disk_to_expand_index: "{{ lookup('ansible.utils.index_of', vm_disks, 'eq', 'volume-d', 'name') }}"
+        disk_to_expand_index: "{{ lookup('ansible.utils.index_of', vm_disks, 'eq', vm_disk_name, 'name') }}"
       when: vm_name is defined
 
     - name: Register that one
