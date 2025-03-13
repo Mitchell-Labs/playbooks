@@ -13,3 +13,7 @@
         script: | 
           (Get-Partition -DriveLetter {{ drive_letter }} | Get-Disk).Number
       register: disk_number
+
+    - name : print
+      ansible.builtin.debug:
+        var: partition_number
