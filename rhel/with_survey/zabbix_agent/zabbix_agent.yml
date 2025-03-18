@@ -10,4 +10,4 @@
       ansible.builtin.dnf:
         name: "{{ rpm_url }}"
         state: present
-        disable_gpg_check: yes
+        disable_gpg_check: true
