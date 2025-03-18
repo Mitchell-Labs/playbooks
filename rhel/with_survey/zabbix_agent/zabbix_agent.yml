@@ -29,7 +29,7 @@
         dest: /etc/zabbix/zabbix_agent2.conf
         mode: '0644'
 
-    - name: Stop agent service, if started
+    - name: Start and enable agent service
       ansible.builtin.service:
         name: zabbix-agent2
         state: started
