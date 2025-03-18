@@ -17,3 +17,20 @@
         name: "zabbix-agent2"
         state: present
         disable_gpg_check: true
+
+    - name: Stop agent service, if started
+      ansible.builtin.service:
+        name: zabbix-agent2
+        state: stopped
+
+    - name: Copy config file template
+      ansible.builtin.template:
+        src: zabbix_agent2.conf.j2
+        dest: /etc/zabbix/zabbix_agent2.conf
+        mode: '0644'
+
+    - name: Stop agent service, if started
+      ansible.builtin.service:
+        name: zabbix-agent2
+        state: started
+        enabled: true
