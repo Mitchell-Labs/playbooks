@@ -4,10 +4,9 @@
   hosts: "{{ rhel_hosts | default('rhel') }}"
   vars:
     zabbix_server: "zabbix.mikemitchell.info"
-  roles:
-    - role: zabbix.zabbix.agent
-      agent_variant: 2
-      agent_major_version: 7.2
-      agent_param_server: "{{ zabbix_server }}"
-      agent_param_serveractive: "{{ zabbix_server }}"
-      agent_param_hostmetadata: 'RHEL Servers'
+    rpm_url: "https://repo.zabbix.com/zabbix/7.2/release/rhel/9/noarch/zabbix-release-latest-7.2.el9.noarch.rpm"
+  tasks:
+    - name: Install the nginx rpm from a remote repo
+      ansible.builtin.dnf:
+        name: "{{ rpm_url }}"
+        state: present
