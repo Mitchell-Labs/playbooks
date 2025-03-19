@@ -33,10 +33,11 @@
 
     - name: Add ports to firewall
       ansible.posix.firewalld:
-        port: "10050/tcp"
+        service: zabbix-agent2
         state: enabled
-        immediate: true
         permanent: true
+        immediate: true
+        offline: true
 
     - name: Start and enable agent service
       ansible.builtin.service:
