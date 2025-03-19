@@ -39,13 +39,13 @@
 
     - name: Enable firewall for zabbix-agent2
       ansible.posix.firewalld:
-        service: '{{ item }}'
+        port: '{{ item }}'
         state: enabled
         immediate: true
         permanent: true
       loop:
-        - 'zabbix-agent'
-#        - 'Zabbix Trapper'
+        - '10050/tcp'
+        - '10050/udp'
 
     - name: Start and enable agent service
       ansible.builtin.service:
