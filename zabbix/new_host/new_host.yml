@@ -9,6 +9,7 @@
       host_zabbix_api_url: "zabbix"
       host_templates: ["Linux by Zabbix agent"]  # Assign list of templates to the host;
       host_hostgroups: ["Linux servers"]
+      host_zabbix_api_token: "{{ api_token }}"
       host_interfaces:
         - type: agent
           dns: "{{ new_zabbix_host }}"
