@@ -45,7 +45,7 @@
         permanent: true
       loop:
         - 'zabbix-agent'
-        - 'Zabbix Trapper'
+#        - 'Zabbix Trapper'
 
     - name: Start and enable agent service
       ansible.builtin.service:
