@@ -1,0 +1,20 @@
+{
+    "name": "",
+    "description": "",
+    "spec": [
+        {
+            "type": "text",
+            "question_name": "New Zabbix hostname",
+            "question_description": "",
+            "variable": "new_zabbix_host",
+            "required": true
+        },
+        {
+            "type": "textarea",
+            "question_name": "Zabbix host groups",
+            "question_description": "",
+            "variable": "zabbix_host_groups",
+            "required": true
+        }
+    ]
+}

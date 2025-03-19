@@ -34,17 +34,3 @@
         name: zabbix-agent2
         state: started
         enabled: true
-
-    - name: Create host in Zabbix
-      zabbix.zabbix.zabbix_host:
-        state: present
-        host: "{{ ansible_facts['hostname'] }}"
-        type: agent
-        hostgroups:
-          - RHEL Servers
-      vars:
-        ansible_network_os: zabbix.zabbix.zabbix
-        ansible_connection: httpapi
-        ansible_user: Admin
-        ansible_httpapi_pass: zabbix
-        ansible_host: "{{ zabbix_server }}/zabbix"

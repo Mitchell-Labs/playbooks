@@ -1,0 +1,28 @@
+- name: RHEL install zabbix agent
+  become: false
+  hosts: localhost
+  vars:
+    zabbix_server: "zabbix.mikemitchell.info"
+  tasks:
+    - name: Create host in Zabbix
+      zabbix.zabbix.zabbix_host:
+        state: present
+        host: "{{ new_zabbix_host }}"
+        type: agent
+        hostgroups: "{{ zabbix_host_groups.splitlines() }}"
+      vars:
+        ansible_network_os: zabbix.zabbix.zabbix
+#        ansible_connection: httpapi
+#        ansible_user: Admin
+#        ansible_httpapi_pass: zabbix
+        ansible_host: "{{ zabbix_server }}/zabbix"
+
+
+  roles:
+    - role: zabbix.zabbix.host
+      host_zabbix_api_server: "{{ zabbix_server }}/zabbix"
+      host_templates: ["Linux by Zabbix agent"]  # Assign list of templates to the host;
+      host_hostgroups: "{{ zabbix_host_groups.splitlines() }}"
+      host_interfaces:
+        - type: agent
+          dns: "{{ new_zabbix_host }}"
