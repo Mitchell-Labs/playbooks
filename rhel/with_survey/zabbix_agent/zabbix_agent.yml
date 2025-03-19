@@ -46,6 +46,8 @@
       loop:
         - '10050/tcp'
         - '10050/udp'
+        - '10051/tcp'
+        - '10051/udp'
 
     - name: Start and enable agent service
       ansible.builtin.service:
