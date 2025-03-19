@@ -12,9 +12,11 @@
         state: present
         disable_gpg_check: true
 
-    - name: Install zabbix agent packages
+    - name: Install required packages
       ansible.builtin.dnf:
-        name: "zabbix-agent2"
+        name:
+          - "zabbix-agent2"
+          - "net-tools"
         state: present
         disable_gpg_check: true
 
@@ -28,6 +30,13 @@
         src: zabbix_agent2.conf.j2
         dest: /etc/zabbix/zabbix_agent2.conf
         mode: '0644'
+
+    - name: Add ports to firewall
+      ansible.posix.firewalld:
+        port: "10050/tcp"
+        state: enabled
+        immediate: true
+        permanent: true
 
     - name: Start and enable agent service
       ansible.builtin.service:
