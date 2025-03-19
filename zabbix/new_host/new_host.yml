@@ -1,11 +1,12 @@
 - name: RHEL install zabbix agent
   become: false
-  hosts: rhel9-zabbix
+  hosts: localhost
   vars:
-#    zabbix_server: "zabbix.mikemitchell.info"
+    zabbix_server: "zabbix.mikemitchell.info"
   roles:
     - role: zabbix.zabbix.host
       host_zabbix_api_server: "{{ zabbix_server }}"
+      host_zabbix_api_url: "zabbix"
       host_templates: ["Linux by Zabbix agent"]  # Assign list of templates to the host;
       host_hostgroups: "{{ zabbix_host_groups.splitlines() }}"
       host_interfaces:
