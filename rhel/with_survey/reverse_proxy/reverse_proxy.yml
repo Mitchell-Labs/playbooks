@@ -5,7 +5,7 @@
   vars:
     ssl_cert_path: "/etc/nginx/ssl/mikemitchell.info.crt"
     ssl_key_path: "/etc/nginx/ssl/mikemitchell.info.key"
-    tasks:
+  tasks:
     - name: Install Nginx and OpenSSL
       ansible.builtin.dnf:
         name:
