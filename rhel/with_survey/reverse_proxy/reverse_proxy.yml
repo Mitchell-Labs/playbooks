@@ -3,8 +3,8 @@
   hosts: "{{ rhel_hosts }}"
   become: yes
   vars:
-    ssl_cert_path: "/etc/nginx/ssl/mikemitchell.info.crt"
-    ssl_key_path: "/etc/nginx/ssl/mikemitchell.info.key"
+    ssl_cert_path: "/etc/nginx/ssl/server.crt"
+    ssl_key_path: "/etc/nginx/ssl/server.key"
   tasks:
     - name: Install Nginx and OpenSSL
       ansible.builtin.dnf:
