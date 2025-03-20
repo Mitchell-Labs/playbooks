@@ -2,11 +2,29 @@
 - name: Configure RHEL 9 as a Reverse Proxy
   hosts: "{{ rhel_hosts }}"
   become: yes
-  tasks:
-    - name: Install Nginx
+  vars:
+    ssl_cert_path: "/etc/nginx/ssl/mikemitchell.info.crt"
+    ssl_key_path: "/etc/nginx/ssl/mikemitchell.info.key"
+    tasks:
+    - name: Install Nginx and OpenSSL
       ansible.builtin.dnf:
-        name: nginx
+        name:
+          - nginx
+          - openssl
         state: present
+
+    - name: Ensure SSL directory exists
+      ansible.builtin.file:
+        path: /etc/nginx/ssl
+        state: directory
+        mode: '0755'
+
+    - name: Generate self-signed SSL certificate
+      ansible.builtin.command: >
+        openssl req -new -x509 -nodes -days 365 -subj "/CN={{ server_name }}" 
+        -out {{ ssl_cert_path }} -keyout {{ ssl_key_path }}
+      args:
+        creates: "{{ ssl_cert_path }}"
 
     - name: Ensure Nginx is enabled and started
       ansible.builtin.systemd:
