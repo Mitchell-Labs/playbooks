@@ -1,0 +1,27 @@
+{
+    "name": "",
+    "description": "",
+    "spec": [
+        {
+            "type": "text",
+            "question_name": "Which host?",
+            "question_description": "Which hosts to patch?",
+            "variable": "rhel_hosts",
+            "required": true
+        },
+        {
+            "type": "text",
+            "question_name": "target URL",
+            "question_description": "Which internal URL to forward to?",
+            "variable": "backend_url",
+            "required": true
+        },
+        {
+            "type": "text",
+            "question_name": "domain name",
+            "question_description": "internal domain name",
+            "variable": "server_name",
+            "required": true
+        }
+    ]
+}

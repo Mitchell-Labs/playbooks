@@ -1,0 +1,39 @@
+---
+- name: Configure RHEL 9 as a Reverse Proxy
+  hosts: "{{ rhel_hosts }}"
+  become: yes
+  tasks:
+    - name: Install Nginx
+      ansible.builtin.dnf:
+        name: nginx
+        state: present
+
+    - name: Ensure Nginx is enabled and started
+      ansible.builtin.systemd:
+        name: nginx
+        enabled: yes
+        state: started
+
+    - name: Configure Nginx reverse proxy
+      ansible.builtin.template:
+        src: nginx_reverse_proxy.conf.j2
+        dest: /etc/nginx/conf.d/reverse_proxy.conf
+      notify: Restart Nginx
+
+    - name: Ensure firewall allows HTTPS traffic
+      ansible.posix.firewalld:
+        service: https
+        permanent: yes
+        state: enabled
+      notify: Reload Firewalld
+
+  handlers:
+    - name: Restart Nginx
+      ansible.builtin.systemd:
+        name: nginx
+        state: restarted
+
+    - name: Reload Firewalld
+      ansible.builtin.systemd:
+        name: firewalld
+        state: reloaded
