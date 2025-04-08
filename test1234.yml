@@ -1,0 +1,11 @@
+---
+- name: Playbook to configure ansible controller post installation
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    custom_ee: "ee-mitchell-labs-default"
+  tasks:
+    - name: Output URL
+      ansible.builtin.debug:
+        msg: "http://{{ ansible_host }}/{{ site_sub_dir.stdout_lines[0] }}"
