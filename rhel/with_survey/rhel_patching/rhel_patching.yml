@@ -2,11 +2,7 @@
   become: true
   become_user: root
   hosts: "{{ rhel_hosts | default('rhel') }}"
-  tasks:
-    - name: print fact
-      ansible.builtin.debug:
-        msg: "{{ ansible_facts['ansible_local']['custom']['owner'] }}"
-    
+  tasks:    
     - name: Update all installed packages
       ansible.builtin.dnf:
         name: '*'
