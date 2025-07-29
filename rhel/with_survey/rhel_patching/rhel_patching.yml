@@ -3,6 +3,10 @@
   become_user: root
   hosts: "{{ rhel_hosts | default('rhel') }}"
   tasks:
+    - name: print fact
+      ansible.builtin.debug:
+        print: "{{ ansible_facts['ansible_local]['example'] }}"
+    
     - name: Update all installed packages
       ansible.builtin.dnf:
         name: '*'
