@@ -3,6 +3,7 @@
   become_user: root
   hosts: "rhel"
   tasks:
-    - name: test
-      ansible.builtin.debug:
-        msg: "{{ test_var }}"
+    - name: Redis | Select Appstream
+      ansible.builtin.dnf:
+        name: "@redis:remi-8.2"
+        state: present
