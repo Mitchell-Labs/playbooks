@@ -7,3 +7,4 @@
       ansible.builtin.dnf:
         name: "@redis:remi-8.2"
         state: present
+        update_cache: True
