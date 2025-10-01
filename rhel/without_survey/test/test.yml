@@ -1,7 +1,7 @@
 - name: Test
   become: true
   become_user: root
-  hosts: "rhel"
+  hosts: "rhel9-jump"
   tasks:
     - name: Redis | Select Appstream
       ansible.builtin.dnf:
