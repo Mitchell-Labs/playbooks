@@ -8,14 +8,6 @@
             "question_description": "",
             "variable": "windows_host",
             "required": true
-        },
-        {
-            "type": "text",
-            "question_name": "Site Source URL",
-            "question_description": "",
-            "variable": "site_source",
-            "required": true,
-            "default": "https://www.free-css.com/assets/files/free-css-templates/download/page295/antique-cafe.zip"
         }
     ]
 }
