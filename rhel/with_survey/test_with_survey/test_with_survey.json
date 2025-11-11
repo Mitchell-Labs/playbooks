@@ -1,0 +1,22 @@
+{
+    "name": "",
+    "description": "",
+    "spec": [
+        {
+            "type": "text",
+            "question_name": "var1",
+            "question_description": "var1",
+            "variable": "var1",
+            "required": true,
+            "default": "rhel"
+        },
+        {
+            "type": "text",
+            "question_name": "var2",
+            "question_description": "var2",
+            "variable": "var1",
+            "required": true,
+            "default": "rhel"
+        }
+    ]
+}

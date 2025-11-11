@@ -1,0 +1,12 @@
+- name: Test
+  become: true
+  become_user: root
+  hosts: "rhel9-jump"
+  tasks:
+    - name: print var1
+      ansible.builtin.debug:
+        var: var1
+    
+    - name: print var2
+      ansible.builtin.debug:
+        var: var2s
