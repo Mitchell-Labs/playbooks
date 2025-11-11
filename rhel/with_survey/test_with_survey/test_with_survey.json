@@ -14,7 +14,7 @@
             "type": "text",
             "question_name": "var2",
             "question_description": "var2",
-            "variable": "var1",
+            "variable": "var2",
             "required": true,
             "default": "rhel"
         }
