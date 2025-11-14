@@ -1,5 +1,6 @@
 - name: Test
   become: true
+  become_user: root
   hosts: "rhel9-jump"
   tasks:
     - name: print var1
