@@ -1,0 +1,45 @@
+- name: Sample Role Config
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  become: false
+
+  vars:
+    #aap_validate_certs: false
+    #aap_hostname: ""
+    #aap_username: ""
+    #aap_token: ""
+    #hub_token: ""
+
+    aap_user_accounts:
+      - username: service_account_user
+        email: "service_account_user@{{ aap_hostname }}"
+        is_superuser: false
+        password: "noonewillguessthisever"
+        state: present
+        update_secrets: true
+
+    gateway_role_user_assignments:
+      - role_definition: "galaxy.collection_publisher"
+        user: service_account_user
+        state: present
+        object_ids:
+          - 'amazon'
+
+    controller_configuration_dispatcher_roles: []
+    eda_configuration_dispatcher_roles: []
+    hub_configuration_dispatcher_roles: []
+
+    gateway_configuration_dispatcher_roles:
+      - role: gateway_users
+        var: aap_user_accounts
+        tags: teams
+      - role: gateway_role_user_assignments
+        var: gateway_role_user_assignments
+        tags: role_user_assignments
+
+
+  tasks:
+    - name: Dispatch Enabled AAP Roles
+      ansible.builtin.include_role:
+        name: infra.aap_configuration.dispatch
