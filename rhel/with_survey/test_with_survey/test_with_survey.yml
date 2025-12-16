@@ -10,3 +10,4 @@
     - name: print var2
       ansible.builtin.debug:
         var: var2s
+      delegate_to: localhost
