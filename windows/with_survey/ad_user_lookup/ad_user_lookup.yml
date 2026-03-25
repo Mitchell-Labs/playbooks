@@ -26,4 +26,8 @@
           - "## Other"
           - "Favorite cat fact: {{ cat_fact.json.fact }}"
           - "-----------------------"
-          - "![Alt text](https://media.discordapp.net/attachments/867834077511286794/1461136001593376829/B23F0056-2D2A-4A0B-9399-7429AC080EA8.jpg)"
+          - | 
+            | Syntax      | Description |
+            | ----------- | ----------- |
+            | Header      | Title       |
+            | Paragraph   | Text        |
