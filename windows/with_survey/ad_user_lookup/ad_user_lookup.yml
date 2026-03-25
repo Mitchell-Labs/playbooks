@@ -18,7 +18,10 @@
       ansible.builtin.debug:
         msg: 
           - "-----------------------"
+          - "# Consolidated User Information"
+          - "## Active Directory"
           - "UPN: {{ ad_info.output[0].UserPrincipalName }}"
           - "SamAccountName: {{ ad_info.output[0].SamAccountName }}"
+          - "## Other"
           - "Favorite cat fact: {{ cat_fact.json.fact }}"
           - "-----------------------"
