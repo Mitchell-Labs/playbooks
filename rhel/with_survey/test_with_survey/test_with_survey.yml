@@ -5,7 +5,7 @@
   tasks:
     - name: print var1
       ansible.builtin.debug:
-        var: var1
+        msg: "{{ var1 }}"
     
     - name: print var2
       ansible.builtin.debug:
