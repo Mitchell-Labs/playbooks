@@ -1,0 +1,12 @@
+- name: AD // User Lookup
+  hosts: windc01.mikemitchell.info
+
+  tasks:
+    - name: Get AD user information
+      ansible.windows.win_powershell:
+        script: "Get-ADUser -Identity {{ ad_user }}"
+      register: ad_info
+
+    - name: Print user info
+      debug:
+        msg: "{{ ad_info }}"

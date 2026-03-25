@@ -1,0 +1,13 @@
+{
+    "name": "",
+    "description": "",
+    "spec": [
+        {
+            "type": "text",
+            "question_name": "AD User",
+            "question_description": "",
+            "variable": "ad_user",
+            "required": true
+        }
+    ]
+}
