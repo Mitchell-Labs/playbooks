@@ -10,5 +10,5 @@
     - name: Print user info
       debug:
         msg: 
-          - "UPN: {{ ad_info.UserPrincipalName }}"
-          - "SamAccountName: {{ ad_info.SamAccountName }}"
+          - "UPN: {{ ad_info['UserPrincipalName'] }}"
+          - "SamAccountName: {{ ad_info['SamAccountName'] }}"
