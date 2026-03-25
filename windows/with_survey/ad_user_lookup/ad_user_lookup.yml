@@ -7,8 +7,15 @@
         script: "Get-ADUser -Identity {{ ad_user }}"
       register: ad_info
 
+    - name: Get cat fact
+      ansible.builtin.uri:
+        url: https://catfact.ninja/fact
+        method: GET
+      register: cat_fact
+
     - name: Print user info
-      debug:
+      ansible.builtin.debug:
         msg: 
           - "UPN: {{ ad_info.output[0].UserPrincipalName }}"
           - "SamAccountName: {{ ad_info.output[0].SamAccountName }}"
+          - "Favorite cat fact: {{ cat_fact.output[0].fact }}"
