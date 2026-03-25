@@ -17,6 +17,8 @@
     - name: Print user info
       ansible.builtin.debug:
         msg: 
+          - "-----------------------"
           - "UPN: {{ ad_info.output[0].UserPrincipalName }}"
           - "SamAccountName: {{ ad_info.output[0].SamAccountName }}"
           - "Favorite cat fact: {{ cat_fact.json.fact }}"
+          - "-----------------------"
