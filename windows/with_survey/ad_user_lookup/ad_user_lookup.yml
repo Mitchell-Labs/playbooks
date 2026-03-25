@@ -12,6 +12,7 @@
         url: https://catfact.ninja/fact
         method: GET
       register: cat_fact
+      delegate_to: localhost
 
     - name: Print user info
       ansible.builtin.debug:
