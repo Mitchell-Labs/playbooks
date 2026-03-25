@@ -25,5 +25,4 @@
           - "SamAccountName: {{ ad_info.output[0].SamAccountName }}"
           - "## Other"
           - "Favorite cat fact: {{ cat_fact.json.fact }}"
-          - ":cat:"
           - "-----------------------"
