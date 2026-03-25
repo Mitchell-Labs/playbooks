@@ -1,27 +1,29 @@
-- name: AD // User Lookup
-  hosts: windc01.mikemitchell.info
+name: AD // User Lookup
+hosts: windc01.mikemitchell.info
+gather_facts: false
 
-  tasks:
-    - name: Get AD user information
-      ansible.windows.win_powershell:
-        script: "Get-ADUser -Identity {{ ad_user }}"
-      register: ad_info
+tasks:
+  - name: Get AD user information
+    ansible.windows.win_powershell:
+      script: "Get-ADUser -Identity {{ ad_user }}"
+    register: ad_info
 
-    - name: Get cat fact
-      ansible.builtin.uri:
-        url: https://catfact.ninja/fact
-        method: GET
-      register: cat_fact
-      delegate_to: localhost
+  - name: Get cat fact
+    ansible.builtin.uri:
+      url: https://catfact.ninja/fact
+      method: GET
+    register: cat_fact
+    delegate_to: localhost
 
-    - name: Print user info
-      ansible.builtin.debug:
-        msg: 
-          - "-----------------------"
-          - "# Consolidated User Information"
-          - "## Active Directory"
-          - "UPN: {{ ad_info.output[0].UserPrincipalName }}"
-          - "SamAccountName: {{ ad_info.output[0].SamAccountName }}"
-          - "## Other"
-          - "Favorite cat fact: {{ cat_fact.json.fact }}"
-          - "-----------------------"
+  - name: Print user info
+    ansible.builtin.debug:
+      msg: 
+        - "-----------------------"
+        - "# Consolidated User Information"
+        - "## Active Directory"
+        - "UPN: {{ ad_info.output[0].UserPrincipalName }}"
+        - "SamAccountName: {{ ad_info.output[0].SamAccountName }}"
+        - "## Other"
+        - "Favorite cat fact: {{ cat_fact.json.fact }}"
+        - "-----------------------"
+        - "![Alt text](https://media.discordapp.net/attachments/867834077511286794/1461136001593376829/B23F0056-2D2A-4A0B-9399-7429AC080EA8.jpg)"
