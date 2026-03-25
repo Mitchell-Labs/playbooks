@@ -21,13 +21,8 @@
           - "-----------------------"
           - "# Consolidated User Information"
           - "## Active Directory"
-          - "UPN: {{ ad_info.output[0].UserPrincipalName }}"
-          - "SamAccountName: {{ ad_info.output[0].SamAccountName }}"
+          - "- UPN: {{ ad_info.output[0].UserPrincipalName }}"
+          - "- SamAccountName: {{ ad_info.output[0].SamAccountName }}"
           - "## Other"
           - "Favorite cat fact: {{ cat_fact.json.fact }}"
           - "-----------------------"
-          - | 
-            | Syntax      | Description |
-            | ----------- | ----------- |
-            | Header      | Title       |
-            | Paragraph   | Text        |
