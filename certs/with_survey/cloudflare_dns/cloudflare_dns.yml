@@ -2,6 +2,7 @@
 - name: Renew SSL Certificate via ACME DNS-01 (Cloudflare)
   hosts: rhel9-jump
   gather_facts: false
+  become: true
   vars:
     acme_directory: "https://acme-v02.api.letsencrypt.org/directory"
     domain_name: "example.com"
