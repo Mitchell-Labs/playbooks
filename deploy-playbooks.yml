@@ -198,7 +198,7 @@
           - "Cloudflare ACME Credentials"
           - "RHEL admin"
         state: present
-      with_items: "{{ certs_without_survey }}"
+      with_items: "{{ certs_without_survey.files }}"
 
     - name: Create Cert templates with surveys
       ansible.controller.job_template:
@@ -214,4 +214,4 @@
           - "Cloudflare ACME Credentials"
           - "RHEL admin"
         state: present
-      with_items: "{{ certs_with_survey }}"
+      with_items: "{{ certs_with_survey.files }}"
