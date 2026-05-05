@@ -84,6 +84,8 @@
         challenge: dns-01
         data: "{{ acme_challenge }}"
       when: acme_challenge is changed
+      retries: 5
+      delay: 30
 
     - name: Clean up Cloudflare DNS records
       community.general.cloudflare_dns:
