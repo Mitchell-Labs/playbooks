@@ -10,6 +10,8 @@
     key_path: "/etc/ssl/private/{{ domain_name }}.key"
     account_key_path: "/etc/ssl/private/letsencrypt_account.key"
     csr_path: "/etc/ssl/csr/{{ domain_name }}.csr"
+    propagation_delay: 30
+    propagation_retries: 5
 
   tasks:
     - name: Ensure directory structure exists
@@ -67,7 +69,7 @@
     # Give DNS a moment to propagate (Optional but recommended)
     - name: Wait for DNS propagation
       pause:
-        seconds: 30
+        seconds: "{{ propagation_delay }}"
       when: acme_challenge is changed
 
     # STEP 3: Validate and retrieve certificate
@@ -84,8 +86,8 @@
         challenge: dns-01
         data: "{{ acme_challenge }}"
       when: acme_challenge is changed
-      retries: 5
-      delay: 30
+      retries: "{{ propagation_retries }}"
+      delay: "{{ propagation_delay }}"
 
     - name: Clean up Cloudflare DNS records
       community.general.cloudflare_dns:
