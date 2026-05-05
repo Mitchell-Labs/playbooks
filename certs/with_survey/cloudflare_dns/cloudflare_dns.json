@@ -1,0 +1,13 @@
+{
+    "name": "",
+    "description": "",
+    "spec": [
+        {
+            "type": "text",
+            "question_name": "Domain Name",
+            "question_description": "Domain Name",
+            "variable": "domain_name",
+            "required": true
+        }
+    ]
+}
