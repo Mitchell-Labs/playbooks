@@ -44,7 +44,7 @@
       ansible.builtin.file:
         path: "{{ cockpit_combined_file }}"
         owner: root
-        group: cockpit-wsinstance
+        group: root
         mode: '0640'
         setype: cert_t
 
