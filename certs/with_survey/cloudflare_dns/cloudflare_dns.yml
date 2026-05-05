@@ -40,6 +40,7 @@
     # STEP 1: Request the challenge
     - name: Initiate ACME DNS-01 challenge
       community.crypto.acme_certificate:
+        terms_agreed: true
         acme_directory: "{{ acme_directory }}"
         acme_version: 2
         account_email: "{{ acme_email }}"
