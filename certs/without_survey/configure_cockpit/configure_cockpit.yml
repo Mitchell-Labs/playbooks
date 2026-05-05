@@ -6,8 +6,8 @@
   vars:
     domain_name: "mikemitchell.info"
     # Paths where your ACME playbook saves the files
-    cert_path: "/etc/pki/tls/certs/{{ domain_name }}.crt"
-    key_path: "/etc/pki/tls/private/{{ domain_name }}.key"
+    cert_path: "/etc/ssl/certs/{{ domain_name }}.crt"
+    key_path: "/etc/ssl/private/{{ domain_name }}.key"
     # Cockpit specific destination
     cockpit_cert_dir: "/etc/cockpit/ws-certs.d"
     cockpit_combined_file: "{{ cockpit_cert_dir }}/{{ domain_name }}.cert"
