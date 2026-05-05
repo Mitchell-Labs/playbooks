@@ -1,0 +1,75 @@
+---
+- name: Configure Cockpit with Custom SSL Certificates
+  hosts: rhel9-jump
+  gather_facts: false
+  become: true
+  vars:
+    domain_name: "mikemitchell.info"
+    # Paths where your ACME playbook saves the files
+    cert_path: "/etc/pki/tls/certs/{{ domain_name }}.crt"
+    key_path: "/etc/pki/tls/private/{{ domain_name }}.key"
+    # Cockpit specific destination
+    cockpit_cert_dir: "/etc/cockpit/ws-certs.d"
+    cockpit_combined_file: "{{ cockpit_cert_dir }}/{{ domain_name }}.cert"
+
+  tasks:
+    - name: Ensure all required packages are present
+      ansible.builtin.dnf:
+        name:
+          - cockpit
+          - firewalld
+          - openssl
+        state: present
+
+    - name: Verify that certificate and key files exist
+      ansible.builtin.stat:
+        path: "{{ item }}"
+      loop:
+        - "{{ cert_path }}"
+        - "{{ key_path }}"
+      register: cert_files
+
+    - name: Fail if certificates are missing
+      ansible.builtin.fail:
+        msg: "Certificate or Key file not found. Run the ACME renewal playbook first."
+      when: not item.stat.exists
+      loop: "{{ cert_files.results }}"
+
+    - name: Create combined certificate and key for Cockpit
+      ansible.builtin.shell: "cat {{ cert_path }} {{ key_path }} > {{ cockpit_combined_file }}"
+      register: combine_result
+      changed_when: true 
+
+    - name: Set strict permissions and SELinux context for Cockpit certificate
+      ansible.builtin.file:
+        path: "{{ cockpit_combined_file }}"
+        owner: root
+        group: cockpit-wsinstance
+        mode: '0640'
+        setype: cert_t
+
+    - name: Ensure firewalld is running
+      ansible.builtin.systemd:
+        name: firewalld
+        state: started
+        enabled: true
+
+    - name: Ensure Cockpit port is open in firewalld
+      ansible.posix.firewalld:
+        service: cockpit
+        permanent: true
+        state: enabled
+      notify: Reload Firewall
+
+    - name: Enable and restart Cockpit service
+      ansible.builtin.systemd:
+        name: cockpit
+        enabled: true
+        state: restarted
+      when: combine_result.changed
+
+  handlers:
+    - name: Reload Firewall
+      ansible.builtin.service:
+        name: firewalld
+        state: reloaded

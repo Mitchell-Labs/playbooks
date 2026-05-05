@@ -172,3 +172,46 @@
         state: present
         unified_job_template: 'AAP // Refresh RHAH token'
         rrule: "DTSTART:20250119T040000Z RRULE:FREQ=WEEKLY;INTERVAL=1;COUNT=1"
+
+# Cert stuff
+    - name: Register certs without surveys
+      ansible.builtin.find:
+        paths: ./certs/without_survey
+        file_type: directory
+      register: certs_without_survey
+
+    - name: Register certs with surveys
+      ansible.builtin.find:
+        paths: ./certs/with_survey
+        file_type: directory
+      register: certs_with_survey
+
+    - name: Create Cert templates without surveys
+      ansible.controller.job_template:
+        name: "CERTS // {{(item.path | split('/'))[2] | replace('_',' ')}}"
+        job_type: "run"
+        inventory: "Lab Inventory"
+        project: "playbooks"
+        playbook: "{{ item.path }}/{{ (item.path | split('/'))[2] }}.yml"
+        execution_environment: "{{ custom_ee }}"
+        credentials:
+          - "Cloudflare ACME Credentials"
+          - "RHEL admin"
+        state: present
+      with_items: "{{ certs_without_survey }}"
+
+    - name: Create Cert templates with surveys
+      ansible.controller.job_template:
+        name: "CERTS // {{(item.path | split('/'))[2] | replace('_',' ')}}"
+        job_type: "run"
+        inventory: "Lab Inventory"
+        project: "playbooks"
+        playbook: "{{ item.path }}/{{ (item.path | split('/'))[2] }}.yml"
+        survey_enabled: true
+        survey_spec: "{{ lookup('file', (item.path + '/' + (item.path | split('/'))[2] + '.json')) }}"
+        execution_environment: "{{ custom_ee }}"
+        credentials:
+          - "Cloudflare ACME Credentials"
+          - "RHEL admin"
+        state: present
+      with_items: "{{ certs_with_survey }}"
