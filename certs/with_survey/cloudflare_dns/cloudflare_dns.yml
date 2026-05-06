@@ -125,3 +125,17 @@
           fullchain: "{{ fullchain_val }}"
       when: acme_challenge is changed
       no_log: true
+
+    - name: Retrieve certificates from HashiCorp Vault
+      community.hashi_vault.vault_kv2_get:
+        url: "{{ vault_url }}"
+        token: "{{ vault_token }}"
+        engine_mount_point: "secret"
+        path: "certificates/{{ domain_name }}"
+      register: vault_certs
+      no_log: true
+
+    - name: Pass the cert data on
+      ansible.builtin.set_stats:
+        data:
+          vault_certs: "{{ vault_certs }}"
