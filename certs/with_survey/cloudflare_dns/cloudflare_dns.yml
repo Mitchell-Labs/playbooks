@@ -14,7 +14,7 @@
     csr_path: "/tmp/{{ domain_name }}.csr"
 
     propagation_retries: 5
-    propagation_delay: 30
+    propagation_delay: 60
 
   tasks:
     - name: Generate ACME account key
