@@ -225,8 +225,6 @@
         name: "WORKFLOW // acme ssl renewals"
         extra_vars: { domain_name: "mikemitchell.info" }
         state: present
-        workflow_nodes:
-          - identifier: "ACME renewal from CloudFlare"
 
     - name: Add Node 2 - configure cockpit
       ansible.controller.workflow_job_template_node:
@@ -243,4 +241,3 @@
         state: present
         success_nodes:
           - "Update RHEL Cockpit SSL"
-
