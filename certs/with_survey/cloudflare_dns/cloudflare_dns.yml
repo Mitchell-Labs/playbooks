@@ -70,6 +70,7 @@
         api_token: "{{ cloudflare_token }}"
         state: present
         solo: true
+        ttl: 120
       loop: "{{ acme_challenge.challenge_data_dns | dict2items }}"
       when: acme_challenge is changed
 
