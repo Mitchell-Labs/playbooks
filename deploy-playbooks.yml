@@ -225,21 +225,22 @@
         name: "WORKFLOW // acme ssl renewals"
         extra_vars: { domain_name: "mikemitchell.info" }
         state: present
-
-    - name: Add Node 1 - ACME renewal from CloudFlare
-      ansible.controller.workflow_job_template_node:
-        workflow_job_template: "WORKFLOW // acme ssl renewals"
-        unified_job_template: "CERTS // cloudflare dns"
-        identifier: "node_certs_renewal"
-        state: present
-      register: node_certs
+        workflow_nodes:
+          - identifier: "ACME renewal from CloudFlare"
 
     - name: Add Node 2 - configure cockpit
       ansible.controller.workflow_job_template_node:
         workflow_job_template: "WORKFLOW // acme ssl renewals"
         unified_job_template: "RHEL // configure cockpit"
-        identifier: "node_config_cockpit"
-        # This creates the link between the two nodes
-        success_nodes:
-          - "node_certs_renewal"
+        identifier: "Update RHEL Cockpit SSL"
         state: present
+
+    - name: Add Node 1 - ACME renewal from CloudFlare
+      ansible.controller.workflow_job_template_node:
+        workflow_job_template: "WORKFLOW // acme ssl renewals"
+        unified_job_template: "CERTS // cloudflare dns"
+        identifier: "ACME renewal from CloudFlare"
+        state: present
+        success_nodes:
+          - "Update RHEL Cockpit SSL"
+
