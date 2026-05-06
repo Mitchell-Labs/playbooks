@@ -59,7 +59,8 @@
         name: "Default Web Site"
         protocol: https
         port: 443
-        host_header: "{{ domain_name }}"
+        #host_header: "{{ domain_name }}"
+        host_header: "*"
         certificate_store_name: WebHosting
         certificate_hash: "{{ cert_import.thumbprints[0] }}"
         state: present
