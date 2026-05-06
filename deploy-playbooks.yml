@@ -233,6 +233,13 @@
         identifier: "Update RHEL Cockpit SSL"
         state: present
 
+    - name: Add Node 2 - configure iis
+      ansible.controller.workflow_job_template_node:
+        workflow_job_template: "WORKFLOW // acme ssl renewals"
+        unified_job_template: "Windows // iis ssl renewal"
+        identifier: "Update Windows IIS"
+        state: present
+
     - name: Add Node 1 - ACME renewal from CloudFlare
       ansible.controller.workflow_job_template_node:
         workflow_job_template: "WORKFLOW // acme ssl renewals"
@@ -241,3 +248,4 @@
         state: present
         success_nodes:
           - "Update RHEL Cockpit SSL"
+          - "Update Windows IIS"
