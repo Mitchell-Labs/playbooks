@@ -20,6 +20,8 @@
         privatekey_content: "{{ vault_certs.secret.private_key }}"
         certificate_content: "{{ vault_certs.secret.certificate }}"
         other_certificates_content: "{{ vault_certs.secret.fullchain }}"
+        maciter: 1
+        iter: 2048
         state: present
       delegate_to: localhost
       #no_log: true
@@ -50,6 +52,7 @@
         store_name: WebHosting
         store_location: LocalMachine
         key_exportable: true
+        key_storage: machine
         state: present
       register: cert_import
 
