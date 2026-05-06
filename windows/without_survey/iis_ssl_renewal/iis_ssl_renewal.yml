@@ -17,7 +17,6 @@
         friendly_name: "{{ domain_name }}"
         # IIS PFXs usually require a password, even if blank
         passphrase: "password" 
-        privatekey_path: "" # Not needed if providing content
         privatekey_content: "{{ vault_certs.secret.private_key }}"
         certificate_content: "{{ vault_certs.secret.certificate }}"
         other_certificates_content: "{{ vault_certs.secret.fullchain }}"
