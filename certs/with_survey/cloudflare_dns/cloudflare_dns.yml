@@ -4,8 +4,6 @@
   connection: local
   gather_facts: false
   vars:
-    acme_directory: "https://acme-v02.api.letsencrypt.org/directory"
-
     # Using /tmp for all transient files
     cert_path: "/tmp/{{ domain_name }}.crt"
     fullchain_path: "/tmp/{{ domain_name }}_fullchain.crt"
