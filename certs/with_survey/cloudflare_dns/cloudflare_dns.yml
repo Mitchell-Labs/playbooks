@@ -64,14 +64,14 @@
     - name: Create Cloudflare DNS challenge records
       community.general.cloudflare_dns:
         zone: "{{ domain_name }}"
-        record: "{{ item.key }}"
+        record: "{{ item.0.key }}"
         type: TXT
-        value: "{{ item.value[0] }}"
+        value: "{{ item.1 }}"
         api_token: "{{ cloudflare_token }}"
         state: present
-        solo: true
+        solo: false
         ttl: 120
-      loop: "{{ acme_challenge.challenge_data_dns | dict2items }}"
+      loop: "{{ acme_challenge.challenge_data_dns | dict2items | subelements('value') }}"
       when: acme_challenge is changed
 
     - name: Wait for DNS propagation
