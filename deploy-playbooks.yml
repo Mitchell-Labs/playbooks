@@ -217,3 +217,30 @@
           - "Dev Hashi Vault"
         state: present
       with_items: "{{ certs_with_survey.files }}"
+
+# Wokflows
+    # Cert renwal
+    - name: acme ssl renewals
+      ansible.controller.workflow_job_template:
+        name: "WORKFLOW // acme ssl renewals"
+        extra_vars:
+          - domain_name: "mikemitchell.info"
+        state: present
+
+    - name: Add Node 1 - ACME renewal from CloudFlare
+      ansible.controller.workflow_job_template_node:
+        workflow_job_template: "WORKFLOW // acme ssl renewals"
+        unified_job_template: "CERTS // cloudflare dns"
+        identifier: "node_certs_renewal"
+        state: present
+      register: node_certs
+
+    - name: Add Node 2 - configure cockpit
+      ansible.controller.workflow_job_template_node:
+        workflow_job_template: "WORKFLOW // acme ssl renewals"
+        unified_job_template: "RHEL // configure cockpit"
+        identifier: "node_config_cockpit"
+        # This creates the link between the two nodes
+        success_nodes:
+          - "node_certs_renewal"
+        state: present
