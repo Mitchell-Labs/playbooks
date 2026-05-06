@@ -4,28 +4,22 @@
   gather_facts: false
   become: true
   vars:
-    domain_name: "mikemitchell.info"
     cockpit_cert_dir: "/etc/cockpit/ws-certs.d"
     cockpit_combined_file: "{{ cockpit_cert_dir }}/{{ domain_name }}.cert"
 
   tasks:
+    - ansible.builtin.fail:
+        msg: 'variable {{ vault_certs }} not defined'
+      when: item is not defined
+      with_items:
+        - vault_certs
+    
     - name: Ensure required packages are present
       ansible.builtin.dnf:
         name:
           - cockpit
           - firewalld
         state: present
-
-    - name: Retrieve certificates from HashiCorp Vault
-      community.hashi_vault.vault_kv2_get:
-        url: "{{ vault_url }}"
-        token: "{{ vault_token }}"
-        engine_mount_point: "secret"
-        path: "certificates/{{ domain_name }}"
-      register: vault_certs
-      delegate_to: localhost
-      become: false
-      #no_log: true
 
     - name: Create combined certificate file for Cockpit
       # We combine the cert and private_key directly from Vault into the file
