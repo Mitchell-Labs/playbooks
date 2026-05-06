@@ -48,6 +48,8 @@
         path: "{{ temp_dir.path }}\\{{ domain_name }}.pfx"
         password: "password"
         store_name: WebHosting
+        store_location: LocalMachine
+        key_exportable: true
         state: present
       register: cert_import
 
