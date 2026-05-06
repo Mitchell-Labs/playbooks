@@ -40,12 +40,12 @@
     - name: Copy PFX to Windows Server
       ansible.windows.win_copy:
         src: "/tmp/{{ domain_name }}.pfx"
-        dest: "C:\\Temp\\{{ domain_name }}.pfx"
+        dest: "{{ temp_dir.path }}\\{{ domain_name }}.pfx"
       #no_log: true
 
     - name: Import Certificate into Windows Certificate Store
       ansible.windows.win_certificate_store:
-        path: "C:\\Temp\\{{ domain_name }}.pfx"
+        path: "{{ temp_dir.path }}\\{{ domain_name }}.pfx"
         password: "password"
         store_name: WebHosting
         state: present
@@ -62,7 +62,7 @@
 
     - name: Cleanup temporary PFX on Windows
       ansible.windows.win_file:
-        path: "C:\\Temp\\{{ domain_name }}.pfx"
+        path: "{{ temp_dir.path }}\\{{ domain_name }}.pfx"
         state: absent
 
     - name: Cleanup temporary PFX on localhost
