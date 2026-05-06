@@ -197,6 +197,7 @@
         credentials:
           - "Cloudflare ACME Credentials"
           - "RHEL admin"
+          - "Dev Hashi Vault"
         state: present
       with_items: "{{ certs_without_survey.files }}"
 
@@ -213,5 +214,6 @@
         credentials:
           - "Cloudflare ACME Credentials"
           - "RHEL admin"
+          - "Dev Hashi Vault"
         state: present
       with_items: "{{ certs_with_survey.files }}"
