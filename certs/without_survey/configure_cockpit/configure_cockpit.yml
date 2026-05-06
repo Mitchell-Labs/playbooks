@@ -23,7 +23,7 @@
         engine_mount_point: "secret"
         path: "certificates/{{ domain_name }}"
       register: vault_certs
-      no_log: true
+      #no_log: true
 
     - name: Create combined certificate file for Cockpit
       # We combine the cert and private_key directly from Vault into the file
