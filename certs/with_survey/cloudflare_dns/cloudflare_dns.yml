@@ -22,6 +22,17 @@
         path: "{{ account_key_path }}"
         mode: '0600'
 
+    # NEW TASK: Proactively manage the ACME account
+    - name: Ensure ACME account exists
+      community.crypto.acme_account:
+        account_key_src: "{{ account_key_path }}"
+        state: present
+        terms_agreed: true
+        acme_directory: "{{ acme_directory }}"
+        acme_version: 2
+        contact:
+          - "mailto:{{ acme_email }}"
+
     - name: Generate certificate private key
       community.crypto.openssl_privatekey:
         path: "{{ key_path }}"
@@ -38,7 +49,6 @@
 
     - name: Initiate ACME DNS-01 challenge
       community.crypto.acme_certificate:
-        terms_agreed: true
         acme_directory: "{{ acme_directory }}"
         acme_version: 2
         account_email: "{{ acme_email }}"
@@ -48,6 +58,7 @@
         fullchain_dest: "{{ fullchain_path }}"
         remaining_days: 30
         challenge: dns-01
+        modify_account: false
       register: acme_challenge
 
     - name: Create Cloudflare DNS challenge records
