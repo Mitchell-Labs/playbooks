@@ -31,6 +31,12 @@
           - Web-Mgmt-Tools
         state: present
 
+    - name: Create temporary directory
+      ansible.windows.win_tempfile:
+        state: directory
+        suffix: build
+      register: temp_dir
+
     - name: Copy PFX to Windows Server
       ansible.windows.win_copy:
         src: "/tmp/{{ domain_name }}.pfx"
