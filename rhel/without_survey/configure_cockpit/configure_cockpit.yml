@@ -8,12 +8,6 @@
     cockpit_combined_file: "{{ cockpit_cert_dir }}/{{ domain_name }}.cert"
 
   tasks:
-    - ansible.builtin.fail:
-        msg: 'variable {{ vault_certs }} not defined'
-      when: item is not defined
-      with_items:
-        - vault_certs
-    
     - name: Ensure required packages are present
       ansible.builtin.dnf:
         name:
@@ -26,8 +20,8 @@
       ansible.builtin.copy:
         dest: "{{ cockpit_combined_file }}"
         content: |
-          {{ vault_certs.secret.certificate }}
-          {{ vault_certs.secret.private_key }}
+          {{ vault_cert }}
+          {{ vault_private_key }}
         owner: root
         group: root
         mode: '0640'
