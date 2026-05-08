@@ -9,6 +9,13 @@
     cockpit_combined_file: "{{ cockpit_cert_dir }}/{{ domain_name }}.cert"
 
   tasks:
+    - ansible.builtin.fail:
+        msg: 'Variable {{ item }} not defined.'
+      when: item is not defined
+      with_items:
+        - vault_cert
+        - vault_private_key
+    
     - name: Ensure required packages are present
       ansible.builtin.dnf:
         name:
