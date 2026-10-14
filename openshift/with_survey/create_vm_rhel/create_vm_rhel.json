@@ -22,14 +22,14 @@
             "min": 0,
             "type": "multiplechoice",
             "choices": [
-                "rhel8",
-                "rhel9"
+                "rhel9",
+                "rhel10"
             ],
             "question_name": "OS Version",
             "question_description": "OS Version",
             "variable": "os_version",
             "required": true,
-            "default": "rhel9"
+            "default": "rhel10"
         },
         {
             "type": "text",
