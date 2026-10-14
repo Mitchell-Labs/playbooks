@@ -53,7 +53,7 @@
                           secretName: mkletz-mac-ssh
                 domain:
                   cpu:
-                    cores: 4
+                    cores: 2
                     sockets: 1
                     threads: 1
                   devices:
@@ -74,7 +74,7 @@
                     type: pc-q35-rhel9.2.0
                   resources:
                     requests:
-                      memory: 8Gi
+                      memory: 4Gi
                 networks:
                   - multus:
                       networkName: virt-bridge
