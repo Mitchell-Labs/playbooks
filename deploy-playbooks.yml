@@ -195,7 +195,7 @@
         playbook: "{{ item.path }}/{{ (item.path | split('/'))[2] }}.yml"
         execution_environment: "{{ custom_ee }}"
         credentials:
-          - "Cloudflare ACME Credentials"
+          - "Cloudflare"
           - "RHEL admin"
           - "Dev Hashi Vault"
         state: present
@@ -212,7 +212,7 @@
         survey_spec: "{{ lookup('file', (item.path + '/' + (item.path | split('/'))[2] + '.json')) }}"
         execution_environment: "{{ custom_ee }}"
         credentials:
-          - "Cloudflare ACME Credentials"
+          - "Cloudflare"
           - "RHEL admin"
           - "Dev Hashi Vault"
         state: present
