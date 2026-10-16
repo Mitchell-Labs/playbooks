@@ -34,7 +34,7 @@
         project: "playbooks"
         playbook: "{{ item.path }}/{{ (item.path | split('/'))[2] }}.yml"
         state: "present"
-        credential: "Windows AD admin"
+        credential: "Windows admin"
         survey_enabled: true
         survey_spec: "{{ lookup('file', (item.path + '/' + (item.path | split('/'))[2] + '.json')) }}"
         execution_environment: "{{ custom_ee }}"
@@ -57,7 +57,7 @@
         project: "playbooks"
         playbook: "{{ item.path }}/{{ (item.path | split('/'))[2] }}.yml"
         state: "present"
-        credential: "Windows AD admin"
+        credential: "Windows admin"
         execution_environment: "{{ custom_ee }}"
       with_items: "{{ windows_without_survey.files }}"
 
